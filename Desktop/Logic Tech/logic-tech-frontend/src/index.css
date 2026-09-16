@@ -1,0 +1,118 @@
+@import "tailwindcss";
+
+@theme {
+  --font-averia: "Averia Libre", cursive;
+}
+
+/* ─── Custom dark-mode variant for Tailwind v4 ────────────────────────── */
+@variant dark (&:where(.dark, .dark *));
+
+/* ─── Design Tokens ─────────────────────────────────────────────────────── */
+:root {
+  /* Backgrounds */
+  --bg-base:        #f1f5f9;   /* slate-100 */
+  --bg-surface:     #ffffff;
+  --bg-elevated:    #f8fafc;   /* slate-50 */
+  --bg-sidebar:     #ffffff;
+  --bg-topbar:      #ffffff;
+  --bg-card:        #ffffff;
+  --bg-hover:       rgba(0,0,0,0.04);
+  --bg-input:       #f8fafc;
+
+  /* Borders */
+  --border:         rgba(0,0,0,0.08);
+  --border-strong:  rgba(0,0,0,0.14);
+
+  /* Text */
+  --text-primary:   #0f172a;   /* slate-900 */
+  --text-secondary: #475569;   /* slate-600 */
+  --text-muted:     #94a3b8;   /* slate-400 */
+  --text-inverse:   #ffffff;
+
+  /* Brand (stays the same in both modes) */
+  --brand:          #d97706;   /* Gold (amber-600) */
+  --brand-light:    #fbbf24;   /* Gold light (amber-400) */
+  --brand-bg:       rgba(217,119,6,0.10);
+
+  /* Status */
+  --success:        #16a34a;
+  --warning:        #d97706;
+  --error:          #dc2626;
+  --info:           #2563eb;
+
+  /* Sidebar collapse toggle */
+  --toggle-bg:      #e2e8f0;
+}
+
+.dark {
+  /* Backgrounds */
+  --bg-base:        #020617;   /* slate-950 */
+  --bg-surface:     #0f172a;   /* slate-900 */
+  --bg-elevated:    #1e293b;   /* slate-800 */
+  --bg-sidebar:     #0f172a;   /* slate-900 */
+  --bg-topbar:      #020617;   /* slate-950 */
+  --bg-card:        #1e293b;   /* slate-800 */
+  --bg-hover:       rgba(255,255,255,0.05);
+  --bg-input:       #1e293b;
+
+  /* Borders */
+  --border:         rgba(255,255,255,0.06);
+  --border-strong:  rgba(255,255,255,0.12);
+
+  /* Text */
+  --text-primary:   #f1f5f9;   /* slate-100 */
+  --text-secondary: #94a3b8;   /* slate-400 */
+  --text-muted:     #64748b;   /* slate-500 */
+  --text-inverse:   #0f172a;
+
+  /* Toggle */
+  --toggle-bg:      #1e293b;
+}
+
+/* ─── Base styles ────────────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+/* ─── Semantic utility classes ───────────────────────────────────────────── */
+
+/* Backgrounds */
+.bg-theme-base     { background-color: var(--bg-base); }
+.bg-theme-surface  { background-color: var(--bg-surface); }
+.bg-theme-elevated { background-color: var(--bg-elevated); }
+.bg-theme-sidebar  { background-color: var(--bg-sidebar); }
+.bg-theme-topbar   { background-color: var(--bg-topbar); }
+.bg-theme-card     { background-color: var(--bg-card); }
+.bg-theme-hover    { background-color: var(--bg-hover); }
+.bg-theme-input    { background-color: var(--bg-input); }
+
+/* Borders */
+.border-theme      { border-color: var(--border); }
+.border-theme-strong { border-color: var(--border-strong); }
+
+/* Text */
+.text-theme-primary   { color: var(--text-primary); }
+.text-theme-secondary { color: var(--text-secondary); }
+.text-theme-muted     { color: var(--text-muted); }
+
+/* Hover utility — add to a parent so children respond */
+.hover-theme:hover { background-color: var(--bg-hover); }
+
+/* Toggle button (sidebar / header) */
+.bg-toggle { background-color: var(--toggle-bg); }
+
+/* ─── Smooth theme transitions on key elements ───────────────────────────── */
+header, aside, nav, main, section, footer, div, button, a, input, textarea, select {
+  transition-property: background-color, border-color, color;
+  transition-duration: 0.2s;
+  transition-timing-function: ease;
+}
