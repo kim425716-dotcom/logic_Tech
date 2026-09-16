@@ -106,6 +106,7 @@ class Settings(BaseSettings):
         # Production — Vercel auto-deploy URLs
         "https://logic-tech-frontend.vercel.app",
         "https://logic-tech.vercel.app",
+        "https://logic-tech-frontend-hbvz8u1cg-kim-s-projects-aad1b4ce.vercel.app",
         # Production — custom domain (update when you have one)
         "https://logictech.co.ke",
         "https://www.logictech.co.ke",
