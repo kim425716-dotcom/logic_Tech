@@ -74,7 +74,7 @@ export const projectAPI = {
       title?: string;
       description?: string;
       status?: string;
-      consultant_id?: string;
+      assigned_engineer?: string;
     }
   ) => {
     return apiRequest(`/projects/${projectId}`, {

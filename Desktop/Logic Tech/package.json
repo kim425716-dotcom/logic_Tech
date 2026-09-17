@@ -1,0 +1,7 @@
+{
+  "name": "logic-tech-monorepo",
+  "private": true,
+  "scripts": {
+    "build": "cd logic-tech-frontend && npm install && npm run build"
+  }
+}
