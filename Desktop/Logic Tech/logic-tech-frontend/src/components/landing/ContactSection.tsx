@@ -78,7 +78,7 @@ export default function ContactSection() {
             Send Us a Message
           </h2>
           <p className="text-slate-400 max-w-xl mx-auto text-base">
-            Have questions about our IT consultant marketplace or need custom enterprise solutions? Connect with our team directly.
+            Have questions about our enterprise IT solutions or need custom software development? Connect with our engineering team directly.
           </p>
         </div>
 
@@ -190,9 +190,9 @@ export default function ContactSection() {
                     className="w-full pl-10 pr-4 py-3 bg-slate-950/60 border border-slate-800 rounded-xl text-white focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all text-sm appearance-none"
                   >
                     <option value="General Inquiry" className="bg-slate-900">General Inquiry</option>
-                    <option value="Hire Consultants" className="bg-slate-900">Hiring IT Consultants</option>
-                    <option value="Become a Consultant" className="bg-slate-900">Joining as a Consultant</option>
-                    <option value="Enterprise Solution" className="bg-slate-900">Enterprise / Custom Solution</option>
+                    <option value="Custom Software Development" className="bg-slate-900">Custom Software Development</option>
+                    <option value="Cloud & Cybersecurity" className="bg-slate-900">Cloud & Cybersecurity Architecture</option>
+                    <option value="Enterprise Solution" className="bg-slate-900">Enterprise / Dedicated Engineering Team</option>
                     <option value="Support" className="bg-slate-900">Technical Support</option>
                   </select>
                 </div>

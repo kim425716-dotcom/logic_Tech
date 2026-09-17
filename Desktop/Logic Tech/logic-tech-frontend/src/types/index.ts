@@ -1,8 +1,8 @@
 // ============================================================
-// Logic Tech IT Consultant Marketplace - TypeScript Types
+// Logic Tech Enterprise IT Platform - TypeScript Types
 // ============================================================
 
-export type UserRole = 'client' | 'consultant' | 'admin';
+export type UserRole = 'client' | 'admin';
 
 export interface User {
   id: string;
@@ -24,26 +24,6 @@ export interface BackendUserResponse {
   is_active: boolean;
   created_at: string;
   updated_at?: string;
-}
-
-export interface ConsultantProfile {
-  id: string;
-  userId: string;
-  name: string;
-  email: string;
-  avatarUrl?: string;
-  specialization: string;
-  bio: string;
-  hourlyRate: number;
-  rating: number;
-  reviewCount: number;
-  completedProjects: number;
-  experienceYears: number;
-  availability: 'available' | 'busy' | 'unavailable';
-  skills: string[];
-  certifications: string[];
-  location?: string;
-  verified?: boolean;
 }
 
 export interface ClientProfile {
@@ -80,6 +60,7 @@ export interface Project {
   clientName: string;
   consultantId?: string;
   consultantName?: string;
+  leadEngineer?: string;
   category: string;
   priority: ProjectPriority;
   tasks: Task[];
@@ -93,7 +74,8 @@ export interface Invoice {
   projectId: string;
   projectTitle: string;
   clientName: string;
-  consultantName: string;
+  consultantName?: string;
+  serviceTitle?: string;
   amount: number;
   status: InvoiceStatus;
   dueDate: string;
@@ -176,7 +158,7 @@ export interface RegisterData {
   name: string;
   email: string;
   password: string;
-  role: 'client' | 'consultant';
+  role?: 'client' | 'admin';
 }
 
 export interface AuthState {
@@ -193,16 +175,8 @@ export interface ClientDashboardStats {
   completedProjects: number;
 }
 
-export interface ConsultantDashboardStats {
-  activeProjects: number;
-  pendingProposals: number;
-  totalEarned: number;
-  avgRating: number;
-}
-
 export interface AdminDashboardStats {
   totalUsers: number;
-  totalConsultants: number;
   totalClients: number;
   activeProjects: number;
   totalRevenue: number;

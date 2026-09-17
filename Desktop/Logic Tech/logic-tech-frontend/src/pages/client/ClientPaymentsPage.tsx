@@ -56,7 +56,7 @@ export default function ClientPaymentsPage() {
                   <Badge label={invoice.status} />
                 </div>
                 <p className="font-semibold text-white">{invoice.projectTitle}</p>
-                <p className="text-sm text-slate-500">{invoice.consultantName} · Due {formatDate(invoice.dueDate)}</p>
+                <p className="text-sm text-slate-500">{invoice.serviceTitle ?? 'Project Milestone'} · Due {formatDate(invoice.dueDate)}</p>
               </div>
               <div className="flex items-center gap-4">
                 <p className="text-xl font-bold text-white">{formatCurrency(invoice.amount)}</p>

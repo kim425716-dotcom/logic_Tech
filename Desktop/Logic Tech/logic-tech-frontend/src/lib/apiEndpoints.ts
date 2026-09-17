@@ -6,7 +6,7 @@ export const authAPI = {
     name: string;
     email: string;
     password: string;
-    role: 'client' | 'consultant' | 'admin';
+    role?: 'client' | 'admin';
   }) => {
     return apiRequest('/auth/register', {
       method: 'POST',

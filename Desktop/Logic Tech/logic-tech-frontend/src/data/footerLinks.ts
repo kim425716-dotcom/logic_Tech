@@ -8,10 +8,10 @@ export type FooterLinkGroup = Record<string, FooterLink[]>;
 
 export const footerLinkGroups: FooterLinkGroup = {
   Platform: [
-    { label: 'Browse Consultants', href: '#consultants' },
     { label: 'Services', href: '#services' },
     { label: 'How It Works', href: '#how-it-works' },
-    { label: 'Pricing', href: '#' },
+    { label: 'FAQ', href: '#faq' },
+    { label: 'Contact', href: '#contact' },
   ],
   Company: [
     { label: 'About Us', href: '#' },
@@ -38,7 +38,7 @@ export const footerBrand = {
   name: 'Logic Tech',
   accent: 'Tech',
   tagline:
-    'The trusted marketplace connecting businesses with expert IT consultants across Africa and beyond.',
+    'The premier enterprise platform for modern IT solutions, custom software engineering, and cloud infrastructure.',
 };
 
 export const footerSocial = {

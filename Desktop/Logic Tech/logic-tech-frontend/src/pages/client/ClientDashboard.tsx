@@ -73,7 +73,7 @@ export default function ClientDashboard() {
                       <h3 className="font-semibold text-white">{project.title}</h3>
                       <Badge label={project.status} />
                     </div>
-                    <p className="text-sm text-slate-500">{project.consultantName ?? 'Awaiting consultant'} · Due {formatDate(project.deadline)}</p>
+                    <p className="text-sm text-slate-500">{project.category} · Due {formatDate(project.deadline)}</p>
                   </div>
                   <div className="sm:w-48">
                     <div className="flex justify-between text-xs text-slate-400 mb-1">

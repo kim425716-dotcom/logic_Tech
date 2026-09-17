@@ -13,8 +13,8 @@ import NotificationDropdown from './NotificationDropdown';
 const navLinks = [
   { label: 'Services', href: '#services' },
   { label: 'How It Works', href: '#how-it-works' },
-  { label: 'Consultants', href: '#consultants' },
   { label: 'FAQ', href: '#faq' },
+  { label: 'Contact', href: '#contact' },
 ];
 
 export default function Navbar() {

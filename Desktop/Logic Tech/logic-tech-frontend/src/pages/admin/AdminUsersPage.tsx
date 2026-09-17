@@ -1,5 +1,4 @@
 import { useCallback, useMemo, useState } from 'react';
-import { mockConsultants } from '../../data/mockData';
 import Card from '../../components/ui/Card';
 import Avatar from '../../components/ui/Avatar';
 import Badge from '../../components/ui/Badge';
@@ -14,29 +13,12 @@ export default function AdminUsersPage() {
 
   const fetchUsers = useCallback(() => loadLiveUsers(), []);
   const { data, loading } = useLiveData(fetchUsers, { intervalMs: LIVE_INTERVALS.lists });
-  const baseUsers = data?.users ?? getFallbackUsers();
+  const allUsers = data?.users ?? getFallbackUsers();
 
-  const allUsers = useMemo(() => [
-    ...baseUsers.map(u => ({ ...u, type: u.role as string })),
-    ...mockConsultants
-      .filter(c => !baseUsers.some(u => u.id === c.userId))
-      .map(c => ({
-        id: c.id,
-        name: c.name,
-        email: c.email,
-        role: 'consultant' as const,
-        avatarUrl: c.avatarUrl,
-        createdAt: '',
-        updatedAt: '',
-        type: 'consultant',
-        specialization: c.specialization,
-      })),
-  ], [baseUsers]);
-
-  const filtered = allUsers.filter(u =>
+  const filtered = useMemo(() => allUsers.filter(u =>
     u.name.toLowerCase().includes(search.toLowerCase()) ||
     u.email.toLowerCase().includes(search.toLowerCase()),
-  );
+  ), [allUsers, search]);
 
   return (
     <div className="space-y-6">

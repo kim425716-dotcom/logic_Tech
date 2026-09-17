@@ -52,7 +52,7 @@ export default function RegisterPage() {
               <span className="text-2xl font-bold text-white tracking-tight">Logic<span className="text-violet-400">Tech</span></span>
             </Link>
             <h1 className="text-2xl font-bold text-white">Create your account</h1>
-            <p className="text-sm text-slate-400 mt-1">Join thousands of businesses and consultants</p>
+            <p className="text-sm text-slate-400 mt-1">Join leading businesses building with Logic Tech</p>
           </div>
 
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -62,26 +62,6 @@ export default function RegisterPage() {
               leftIcon={<FaEnvelope size={14} />} required />
             <Input label="Password" type="password" value={form.password} onChange={e => setForm({ ...form, password: e.target.value })}
               leftIcon={<FaLock size={14} />} required />
-
-            <div>
-              <p className="text-sm font-medium text-slate-300 mb-2">I am a</p>
-              <div className="grid grid-cols-2 gap-2">
-                {(['client', 'consultant'] as const).map(role => (
-                  <button
-                    key={role}
-                    type="button"
-                    onClick={() => setForm({ ...form, role })}
-                    className={`py-2.5 rounded-xl text-sm font-medium capitalize transition-all ${
-                      form.role === role
-                        ? 'bg-violet-500/20 text-violet-400 border border-violet-500/30'
-                        : 'bg-white/5 text-slate-400 border border-white/5 hover:border-white/10'
-                    }`}
-                  >
-                    {role}
-                  </button>
-                ))}
-              </div>
-            </div>
 
             <Button type="submit" isLoading={loading} fullWidth rightIcon={<FaArrowRight size={12} />}>
               Create Account

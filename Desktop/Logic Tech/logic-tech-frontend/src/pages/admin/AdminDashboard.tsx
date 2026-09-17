@@ -3,7 +3,7 @@ import StatCard from '../../components/shared/StatCard';
 import LiveIndicator from '../../components/shared/LiveIndicator';
 import Card from '../../components/ui/Card';
 import { BarChart, DonutChart } from '../../components/shared/Charts';
-import { FaUsers, FaUserTie, FaProjectDiagram, FaDollarSign, FaClipboardCheck } from 'react-icons/fa';
+import { FaUsers, FaProjectDiagram, FaDollarSign, FaClipboardCheck } from 'react-icons/fa';
 import { formatCurrency } from '../../lib/utils';
 import { useNotifications } from '../../contexts/NotificationContext';
 import { useLiveData } from '../../hooks/useLiveData';
@@ -46,7 +46,6 @@ export default function AdminDashboard() {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <StatCard label="Total Users" value={stats.totalUsers} icon={FaUsers} />
-        <StatCard label="Consultants" value={stats.totalConsultants} icon={FaUserTie} />
         <StatCard label="Clients" value={stats.totalClients} icon={FaUsers} />
         <StatCard label="Active Projects" value={stats.activeProjects} icon={FaProjectDiagram} />
         <StatCard label="Total Revenue" value={stats.totalRevenue} icon={FaDollarSign} prefix="$" />
@@ -81,7 +80,7 @@ export default function AdminDashboard() {
             <div key={p.id} className="flex justify-between items-center py-2 border-b border-white/5 last:border-0">
               <div>
                 <p className="text-sm text-white">{p.title}</p>
-                <p className="text-xs text-slate-500">{p.clientName} → {p.consultantName ?? 'Unassigned'}</p>
+                <p className="text-xs text-slate-500">{p.clientName} · {p.category}</p>
               </div>
               <span className="text-sm text-slate-400">{formatCurrency(p.budget)}</span>
             </div>

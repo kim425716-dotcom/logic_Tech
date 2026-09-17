@@ -21,7 +21,7 @@ export default function ProjectDetailsPage({ role }: ProjectDetailsPageProps) {
   const { id } = useParams<{ id: string }>();
   const { user } = useAuth();
   const { projectVersion } = useNotifications();
-  const basePath = role === 'client' ? '/client' : '/consultant';
+  const basePath = role === 'admin' ? '/admin' : '/client';
 
   const fetchProject = useCallback(
     () => loadLiveProject(id ?? '', user?.name),
@@ -125,8 +125,8 @@ export default function ProjectDetailsPage({ role }: ProjectDetailsPageProps) {
               <dd className="text-white">{project.clientName}</dd>
             </div>
             <div>
-              <dt className="text-slate-500">Consultant</dt>
-              <dd className="text-white">{project.consultantName ?? 'Not assigned'}</dd>
+              <dt className="text-slate-500">Assigned Team</dt>
+              <dd className="text-white">{project.leadEngineer ?? 'Logic Tech Engineering'}</dd>
             </div>
             <div>
               <dt className="text-slate-500">Category</dt>

@@ -22,18 +22,17 @@ export default function HeroSection() {
             </div>
 
             <h1 className="mb-6 text-5xl font-extrabold leading-tight tracking-tight text-white sm:text-6xl lg:text-7xl">
-              Find Expert IT
+              Enterprise IT
               <br />
               <span className="bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-500 bg-clip-text text-transparent">
-                Consultants
+                Solutions
               </span>
               <br />
               You Can Trust
             </h1>
 
             <p className="mx-auto mb-10 max-w-2xl text-lg leading-relaxed text-slate-400 sm:text-xl">
-              Logic Tech connects your business with vetted IT professionals across Africa
-              and beyond. Launch projects faster, with confidence.
+              Logic Tech delivers cutting-edge software engineering, cloud architecture, cybersecurity, and IT solutions tailored to scale your enterprise.
             </p>
 
             <div className="mb-16 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -44,28 +43,28 @@ export default function HeroSection() {
               >
                 Get Started Free <FaArrowRight size={14} />
               </Link>
-              <Link
-                to="#consultants"
+              <a
+                href="#services"
                 className="flex items-center gap-2 rounded-2xl border border-white/10 px-8 py-4 text-base font-semibold text-slate-300 transition-all hover:border-white/20 hover:bg-white/5"
               >
-                Browse Consultants
-              </Link>
+                Explore Services
+              </a>
             </div>
 
             <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-slate-500">
               <div className="flex items-center gap-2">
                 <FaShieldAlt className="text-emerald-400" />
-                <span>100% Secure Payments</span>
+                <span>100% Secure Delivery</span>
               </div>
               <div className="h-4 w-px bg-white/10" />
               <div className="flex items-center gap-2">
                 <FaStar className="text-amber-400" />
-                <span>4.9/5 Average Rating</span>
+                <span>4.9/5 Client Rating</span>
               </div>
               <div className="h-4 w-px bg-white/10" />
               <div className="flex items-center gap-2">
                 <FaUsers className="text-blue-400" />
-                <span>1,200+ Vetted Consultants</span>
+                <span>Dedicated Tech Specialists</span>
               </div>
             </div>
           </motion.div>

@@ -4,12 +4,12 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   FaTachometerAlt, FaProjectDiagram, FaFileInvoiceDollar,
   FaComments, FaCog, FaSignOutAlt, FaChevronLeft, FaChevronRight,
-  FaUserTie, FaUsers, FaChartBar, FaClipboardList, FaWallet
+  FaUsers, FaChartBar, FaClipboardList
 } from 'react-icons/fa';
 import type { UserRole } from '../../types';
 import { useAuth } from '../../contexts/AuthContext';
 import Avatar from '../ui/Avatar';
-import { currentClientUser, currentConsultantUser, currentAdminUser } from '../../data/mockData';
+import { currentClientUser, currentAdminUser } from '../../data/mockData';
 
 interface NavItem {
   label: string;
@@ -24,15 +24,6 @@ const clientNav: NavItem[] = [
   { label: 'Messages', href: '/client/messages', icon: FaComments },
   { label: 'Payments', href: '/client/payments', icon: FaFileInvoiceDollar },
   { label: 'Settings', href: '/client/settings', icon: FaCog },
-];
-
-const consultantNav: NavItem[] = [
-  { label: 'Dashboard', href: '/consultant/dashboard', icon: FaTachometerAlt },
-  { label: 'Projects', href: '/consultant/projects', icon: FaProjectDiagram },
-  { label: 'My Profile', href: '/consultant/profile', icon: FaUserTie },
-  { label: 'Messages', href: '/consultant/messages', icon: FaComments },
-  { label: 'Earnings', href: '/consultant/earnings', icon: FaWallet },
-  { label: 'Settings', href: '/consultant/settings', icon: FaCog },
 ];
 
 const adminNav: NavItem[] = [
@@ -52,8 +43,8 @@ interface SidebarProps {
 export default function Sidebar({ role, collapsed, onToggle }: SidebarProps) {
   const navigate = useNavigate();
   const { logout, user: authUser } = useAuth();
-  const navItems = role === 'client' ? clientNav : role === 'consultant' ? consultantNav : adminNav;
-  const fallbackUser = role === 'client' ? currentClientUser : role === 'consultant' ? currentConsultantUser : currentAdminUser;
+  const navItems = role === 'admin' ? adminNav : clientNav;
+  const fallbackUser = role === 'admin' ? currentAdminUser : currentClientUser;
   const user = authUser ?? fallbackUser;
 
   const handleLogout = () => {
