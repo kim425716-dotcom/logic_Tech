@@ -19,7 +19,7 @@ export default function ServicesSection() {
             Everything Your Business Needs
           </h2>
           <p className="text-slate-400 max-w-xl mx-auto">
-            From development to deployment, our consultants cover every critical IT domain.
+            From cloud architecture to custom software engineering, we deliver comprehensive solutions across every IT domain.
           </p>
         </motion.div>
 

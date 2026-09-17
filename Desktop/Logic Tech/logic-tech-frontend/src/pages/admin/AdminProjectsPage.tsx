@@ -43,7 +43,7 @@ export default function AdminProjectsPage() {
                   <h3 className="font-semibold text-white">{project.title}</h3>
                   <Badge label={project.status} />
                 </div>
-                <p className="text-sm text-slate-500">{project.clientName} · {project.consultantName ?? 'Unassigned'}</p>
+                <p className="text-sm text-slate-500">{project.clientName} · {project.category}</p>
               </div>
               <div className="lg:w-48">
                 <ProgressBar value={project.progress} showLabel />

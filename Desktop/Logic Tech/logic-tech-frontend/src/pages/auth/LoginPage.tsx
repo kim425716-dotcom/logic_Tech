@@ -105,8 +105,7 @@ export default function LoginPage() {
             <div className="flex gap-2">
               {[
                 { label: 'Client', email: 'alice@example.com' },
-                { label: 'Consultant', email: 'consultant@example.com' },
-                { label: 'Admin', email: 'admin@example.com' },
+                { label: 'Admin', email: 'carol@logictech.io' },
               ].map(demo => (
                 <button
                   key={demo.label}

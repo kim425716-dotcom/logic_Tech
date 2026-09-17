@@ -54,7 +54,7 @@ export default function ClientProjects() {
                     <Badge label={project.priority} />
                   </div>
                   <p className="text-sm text-slate-500 line-clamp-1">{project.description}</p>
-                  <p className="text-xs text-slate-600 mt-1">{project.category} · {project.consultantName ?? 'Unassigned'}</p>
+                  <p className="text-xs text-slate-600 mt-1">{project.category} · Logic Tech Engineering</p>
                 </div>
                 <div className="lg:w-52 flex-shrink-0">
                   <ProgressBar value={project.progress} />

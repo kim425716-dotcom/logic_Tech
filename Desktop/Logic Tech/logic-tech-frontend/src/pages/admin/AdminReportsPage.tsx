@@ -67,7 +67,7 @@ export default function AdminReportsPage() {
           {[
             { label: 'Conversion Rate', value: '12.4%' },
             { label: 'Avg Project Value', value: formatCurrency(Math.round(stats.totalRevenue / Math.max(stats.activeProjects, 1))) },
-            { label: 'Consultant Retention', value: '89%' },
+            { label: 'Project Success Rate', value: '98.5%' },
             { label: 'Client Satisfaction', value: '4.8/5' },
           ].map(m => (
             <div key={m.label}>

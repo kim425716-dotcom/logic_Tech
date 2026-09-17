@@ -5,26 +5,26 @@ import { FaSearch, FaHandshake, FaRocket, FaStar } from 'react-icons/fa';
 const steps = [
   {
     step: '01', icon: FaSearch,
-    title: 'Describe Your Project',
-    description: 'Tell us your requirements. Our intelligent system matches you with the most suitable IT consultants within minutes.',
+    title: 'Describe Your Requirements',
+    description: 'Submit your technical specifications, business goals, and timeline. Our architects review your needs in minutes.',
     color: 'from-violet-500 to-indigo-500',
   },
   {
     step: '02', icon: FaHandshake,
-    title: 'Choose Your Expert',
-    description: 'Review profiles, ratings, and portfolios. Chat directly with candidates before making your final decision.',
+    title: 'Tailored Solution & Scope',
+    description: 'Receive a clear technical roadmap, milestone breakdown, and transparent pricing customized to your stack.',
     color: 'from-blue-500 to-cyan-500',
   },
   {
     step: '03', icon: FaRocket,
-    title: 'Launch & Collaborate',
-    description: 'Kick off your project with milestone tracking, real-time messaging, and secure escrow payments.',
+    title: 'Engineering & Deployment',
+    description: 'Our engineering team executes your project with milestone tracking, real-time communication, and rigorous QA.',
     color: 'from-emerald-500 to-teal-500',
   },
   {
     step: '04', icon: FaStar,
-    title: 'Deliver & Review',
-    description: 'Approve deliverables, release payment, and leave a review to help the community grow stronger.',
+    title: 'Delivery & Ongoing Support',
+    description: 'Review deliverables, launch to production seamlessly, and enjoy full IP ownership with ongoing technical support.',
     color: 'from-amber-500 to-orange-500',
   },
 ];
@@ -43,7 +43,7 @@ export default function HowItWorksSection() {
             How It Works
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">Get Started in 4 Simple Steps</h2>
-          <p className="text-slate-400 max-w-xl mx-auto">From requirement to completion, we make IT consulting seamless and secure.</p>
+          <p className="text-slate-400 max-w-xl mx-auto">From requirement to enterprise production, we make IT delivery seamless and reliable.</p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

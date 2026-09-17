@@ -19,7 +19,7 @@ export default function LandingPage() {
       <FooterCta
         eyebrow="stay in the loop"
         heading="Join the waitlist."
-        sub="Get early access to new consultants, features, and platform updates."
+        sub="Get early access to new features, solutions, and enterprise updates."
         note="no spam, one launch email"
         onWaitlistSubmit={(email) => {
           console.info('[waitlist]', email);

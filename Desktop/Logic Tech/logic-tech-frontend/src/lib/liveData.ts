@@ -1,8 +1,6 @@
 import type {
   AdminDashboardStats,
   ClientDashboardStats,
-  ConsultantDashboardStats,
-  ConsultantProfile,
   Invoice,
   Project,
   ProjectStatus,
@@ -11,8 +9,6 @@ import type {
 import {
   mockAdminStats,
   mockClientStats,
-  mockConsultantStats,
-  mockConsultants,
   mockInvoices,
   mockProjects,
   mockUsers,
@@ -21,7 +17,6 @@ import {
 export const LIVE_INTERVALS = {
   lists: 5000,
   details: 10000,
-  consultants: 10000,
 } as const;
 
 interface BackendProject {
@@ -29,23 +24,11 @@ interface BackendProject {
   title: string;
   description: string;
   client_id: string;
-  consultant_id?: string | null;
   budget: number;
   status: string;
   category: string;
   created_at: string;
   updated_at: string;
-}
-
-interface BackendConsultant {
-  id: string;
-  user_id: string;
-  specialization: string;
-  bio?: string | null;
-  hourly_rate: number;
-  rating: number;
-  total_reviews: number;
-  is_verified: boolean;
 }
 
 function getApiUrl(): string {
@@ -82,36 +65,11 @@ export function mapBackendProject(project: BackendProject, userName?: string): P
     deadline: project.updated_at,
     progress: project.status === 'completed' ? 100 : project.status === 'in_progress' ? 50 : 10,
     clientId: project.client_id,
-    clientName: 'Client',
-    consultantId: project.consultant_id ?? undefined,
-    consultantName: userName,
+    clientName: userName || 'Client',
     category: project.category,
     priority: 'medium',
     tasks: [],
     createdAt: project.created_at,
-  };
-}
-
-export function mapBackendConsultant(profile: BackendConsultant, user?: User): ConsultantProfile {
-  const fallback = mockConsultants.find(c => c.userId === profile.user_id) ?? mockConsultants[0];
-  return {
-    id: profile.id,
-    userId: profile.user_id,
-    name: user?.name ?? fallback.name,
-    email: user?.email ?? fallback.email,
-    avatarUrl: user?.avatarUrl ?? fallback.avatarUrl,
-    specialization: profile.specialization,
-    bio: profile.bio ?? fallback.bio,
-    hourlyRate: profile.hourly_rate,
-    rating: profile.rating,
-    reviewCount: profile.total_reviews,
-    completedProjects: fallback.completedProjects,
-    experienceYears: fallback.experienceYears,
-    availability: fallback.availability,
-    skills: fallback.skills,
-    certifications: fallback.certifications,
-    location: fallback.location,
-    verified: profile.is_verified,
   };
 }
 
@@ -127,29 +85,15 @@ export function computeClientStats(projects: Project[]): ClientDashboardStats {
   };
 }
 
-export function computeConsultantStats(projects: Project[], userId?: string): ConsultantDashboardStats {
-  const mine = projects.filter(p => p.consultantId === userId);
-  const activeProjects = mine.filter(p => p.status === 'in_progress' || p.status === 'pending').length;
-  const pendingProposals = projects.filter(p => p.status === 'pending').length;
-  const completed = mine.filter(p => p.status === 'completed');
-  return {
-    activeProjects,
-    pendingProposals,
-    totalEarned: completed.reduce((sum, p) => sum + p.budget, 0),
-    avgRating: mockConsultantStats.avgRating,
-  };
-}
-
-export function computeAdminStats(projects: Project[], consultants: ConsultantProfile[]): AdminDashboardStats {
+export function computeAdminStats(projects: Project[], users: User[] = mockUsers): AdminDashboardStats {
   const activeProjects = projects.filter(p => p.status === 'in_progress' || p.status === 'pending').length;
   const completedBudget = projects
     .filter(p => p.status === 'completed')
     .reduce((sum, p) => sum + p.budget, 0);
 
   return {
-    totalUsers: mockUsers.length + Math.max(0, consultants.length - mockUsers.filter(u => u.role === 'consultant').length),
-    totalConsultants: consultants.length || mockAdminStats.totalConsultants,
-    totalClients: mockUsers.filter(u => u.role === 'client').length,
+    totalUsers: users.length,
+    totalClients: users.filter(u => u.role === 'client').length,
     activeProjects: activeProjects || mockAdminStats.activeProjects,
     totalRevenue: completedBudget || mockAdminStats.totalRevenue,
     pendingApprovals: projects.filter(p => p.status === 'pending').length || mockAdminStats.pendingApprovals,
@@ -158,10 +102,6 @@ export function computeAdminStats(projects: Project[], consultants: ConsultantPr
 
 export function getFallbackClientStats(): ClientDashboardStats {
   return mockClientStats;
-}
-
-export function getFallbackConsultantStats(): ConsultantDashboardStats {
-  return mockConsultantStats;
 }
 
 export function getFallbackAdminStats(): AdminDashboardStats {
@@ -176,10 +116,6 @@ export function getFallbackInvoices(): Invoice[] {
   return mockInvoices;
 }
 
-export function getFallbackConsultants(): ConsultantProfile[] {
-  return mockConsultants;
-}
-
 export function getFallbackUsers(): User[] {
   return mockUsers;
 }
@@ -190,10 +126,6 @@ export async function fetchLiveProjects(): Promise<BackendProject[]> {
 
 export async function fetchLiveProject(id: string): Promise<BackendProject> {
   return apiFetch<BackendProject>(`/projects/${id}`);
-}
-
-export async function fetchLiveConsultants(): Promise<BackendConsultant[]> {
-  return apiFetch<BackendConsultant[]>('/consultants/?limit=100');
 }
 
 export async function fetchLiveInvoices(): Promise<Invoice[]> {
@@ -222,18 +154,6 @@ export async function loadLiveProject(id: string, userName?: string): Promise<{ 
   }
 }
 
-export async function loadLiveConsultants(): Promise<{ consultants: ConsultantProfile[]; live: boolean }> {
-  try {
-    const backend = await fetchLiveConsultants();
-    return {
-      consultants: backend.map(c => mapBackendConsultant(c)),
-      live: true,
-    };
-  } catch {
-    return { consultants: getFallbackConsultants(), live: false };
-  }
-}
-
 export async function loadLiveInvoices(): Promise<{ invoices: Invoice[]; live: boolean }> {
   try {
     const invoices = await fetchLiveInvoices();
@@ -246,50 +166,25 @@ export async function loadLiveInvoices(): Promise<{ invoices: Invoice[]; live: b
 export async function loadLiveAdminData(): Promise<{
   stats: AdminDashboardStats;
   projects: Project[];
-  consultants: ConsultantProfile[];
   live: boolean;
 }> {
   try {
-    const [backendProjects, backendConsultants] = await Promise.all([
-      fetchLiveProjects(),
-      fetchLiveConsultants(),
-    ]);
+    const backendProjects = await fetchLiveProjects();
     const projects = backendProjects.map(p => mapBackendProject(p));
-    const consultants = backendConsultants.map(c => mapBackendConsultant(c));
     return {
-      stats: computeAdminStats(projects, consultants),
+      stats: computeAdminStats(projects, mockUsers),
       projects,
-      consultants,
       live: true,
     };
   } catch {
     return {
       stats: getFallbackAdminStats(),
       projects: getFallbackProjects(),
-      consultants: getFallbackConsultants(),
       live: false,
     };
   }
 }
 
 export async function loadLiveUsers(): Promise<{ users: User[]; live: boolean }> {
-  try {
-    const { consultants } = await loadLiveConsultants();
-    const consultantUsers: User[] = consultants.map(c => ({
-      id: c.userId,
-      name: c.name,
-      email: c.email,
-      role: 'consultant',
-      avatarUrl: c.avatarUrl,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    }));
-    const merged = [
-      ...mockUsers,
-      ...consultantUsers.filter(c => !mockUsers.some(u => u.id === c.id)),
-    ];
-    return { users: merged, live: true };
-  } catch {
-    return { users: getFallbackUsers(), live: false };
-  }
+  return { users: getFallbackUsers(), live: true };
 }

@@ -15,14 +15,12 @@ const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 function resolveMockUser(email: string): User {
   const lower = email.toLowerCase();
-  if (lower.includes('admin')) return mockUsers.find(u => u.role === 'admin') ?? mockUsers[2];
-  if (lower.includes('consultant')) return mockUsers.find(u => u.role === 'consultant') ?? mockUsers[1];
+  if (lower.includes('admin')) return mockUsers.find(u => u.role === 'admin') ?? mockUsers[1];
   return mockUsers.find(u => u.role === 'client') ?? mockUsers[0];
 }
 
-function dashboardPath(role: UserRole): string {
+function dashboardPath(role?: UserRole): string {
   if (role === 'admin') return '/admin/dashboard';
-  if (role === 'consultant') return '/consultant/dashboard';
   return '/client/dashboard';
 }
 
@@ -88,7 +86,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
       id: `u-${Date.now()}`,
       name: data.name,
       email: data.email,
-      role: data.role,
+      role: data.role ?? 'client',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString(),
     };

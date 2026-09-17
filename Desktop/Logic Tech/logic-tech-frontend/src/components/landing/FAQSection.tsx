@@ -33,7 +33,7 @@ export default function FAQSection() {
             Frequently Asked Questions
           </h2>
           <p className="text-slate-400 max-w-xl mx-auto">
-            Everything you need to know about hiring consultants, payments, IP rights, and getting started on Logic Tech.
+            Everything you need to know about our IT solutions, delivery process, IP ownership, and getting started with Logic Tech.
           </p>
         </motion.div>
 

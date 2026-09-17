@@ -19,11 +19,6 @@ import ClientProjects from './pages/client/ClientProjects';
 import ServiceRequestPage from './pages/client/ServiceRequestPage';
 import ClientPaymentsPage from './pages/client/ClientPaymentsPage';
 
-import ConsultantDashboard from './pages/consultant/ConsultantDashboard';
-import ConsultantProjects from './pages/consultant/ConsultantProjects';
-import ConsultantProfilePage from './pages/consultant/ConsultantProfilePage';
-import ConsultantEarningsPage from './pages/consultant/ConsultantEarningsPage';
-
 import AdminDashboard from './pages/admin/AdminDashboard';
 import AdminUsersPage from './pages/admin/AdminUsersPage';
 import AdminProjectsPage from './pages/admin/AdminProjectsPage';
@@ -92,23 +87,8 @@ export default function App() {
         <Route path="settings" element={<SettingsPage role="client" />} />
       </Route>
 
-      <Route
-        path="/consultant"
-        element={
-          <ProtectedRoute allowedRoles={['consultant']}>
-            <DashboardLayout role="consultant" />
-          </ProtectedRoute>
-        }
-      >
-        <Route index element={<Navigate to="dashboard" replace />} />
-        <Route path="dashboard" element={<ConsultantDashboard />} />
-        <Route path="projects" element={<ConsultantProjects />} />
-        <Route path="projects/:id" element={<ProjectDetailsPage role="consultant" />} />
-        <Route path="profile" element={<ConsultantProfilePage />} />
-        <Route path="messages" element={<MessagingPage role="consultant" />} />
-        <Route path="earnings" element={<ConsultantEarningsPage />} />
-        <Route path="settings" element={<SettingsPage role="consultant" />} />
-      </Route>
+      {/* Redirect any legacy consultant route to client dashboard */}
+      <Route path="/consultant/*" element={<Navigate to="/client/dashboard" replace />} />
 
       <Route
         path="/admin"
