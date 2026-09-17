@@ -58,6 +58,8 @@ export interface Project {
   progress: number;
   clientId: string;
   clientName: string;
+  consultantId?: string;
+  consultantName?: string;
   leadEngineer?: string;
   category: string;
   priority: ProjectPriority;
@@ -72,6 +74,7 @@ export interface Invoice {
   projectId: string;
   projectTitle: string;
   clientName: string;
+  consultantName?: string;
   serviceTitle?: string;
   amount: number;
   status: InvoiceStatus;
