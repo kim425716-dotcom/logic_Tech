@@ -98,6 +98,16 @@ class ApiClient {
     return this.request(`/projects/${id}`, { method: 'PUT', body: JSON.stringify(data) });
   }
 
+  // Consultants
+  async getConsultants(filters?: Record<string, string>) {
+    const params = filters ? '?' + new URLSearchParams(filters).toString() : '';
+    return this.request(`/consultants${params}`);
+  }
+
+  async getConsultant(id: string) {
+    return this.request(`/consultants/${id}`);
+  }
+
   // Invoices
   async getInvoices() {
     return this.request('/invoices');
